@@ -23,10 +23,6 @@ def index():
     return 'hello'
 
 
-@app.route('/predict')
-def predict():
-    return 'pred'
-
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run()
