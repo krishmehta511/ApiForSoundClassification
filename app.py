@@ -1,8 +1,9 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 import tensorflow as tf
 import librosa
 import numpy as np
 import pickle
+
 
 app = Flask(__name__)
 
@@ -25,7 +26,13 @@ def index():
 
 @app.route('/predict')
 def predict():
-    return 'pred'
+    file = request.files['files']
+    extracted_features = getFeatures(file)
+    extracted_features = extracted_features.reshape(1, -1)
+    prediction = model.predict(extracted_features)
+    prediction = np.argmax(prediction, axis=-1)
+    prediction = labelencoder.inverse_transform(prediction)
+    return jsonify(prediction[0])
 
 
 if __name__ == "__main__":
