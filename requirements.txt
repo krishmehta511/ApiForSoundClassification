@@ -1,2 +1,4 @@
 Flask
+tensorflow-cpu
+librosa
 gunicorn
