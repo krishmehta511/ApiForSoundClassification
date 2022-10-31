@@ -24,7 +24,7 @@ def index():
     return 'hello'
 
 
-@app.route('/predict', method=["POST"])
+@app.route('/predict', methods=["POST"])
 def predict():
     file = request.files['files']
     extracted_features = getFeatures(file)
