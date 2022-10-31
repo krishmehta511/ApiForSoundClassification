@@ -11,11 +11,11 @@ labelencoder = pickle.load(open('static/label_encoder.pkl', 'rb'))
 model = tf.keras.models.load_model('static/SavedModel')
 
 
-def getFeatures(audioInput):
-    audioData, audioSampleRate = librosa.load(audioInput, res_type="kaiser_fast")
-    features = librosa.feature.mfcc(y=audioData, sr=audioSampleRate, n_mfcc=40)
-    scaled_features = np.mean(features.T, axis=0)
-    return scaled_features
+# def getFeatures(audioInput):
+#     audioData, audioSampleRate = librosa.load(audioInput, res_type="kaiser_fast")
+#     features = librosa.feature.mfcc(y=audioData, sr=audioSampleRate, n_mfcc=40)
+#     scaled_features = np.mean(features.T, axis=0)
+#     return scaled_features
 
 
 @app.route('/')
@@ -23,7 +23,7 @@ def index():
     return 'hello'
 
 
-@app.route('/predict', methods=["POST"])
+@app.route('/predict')
 def predict():
     return 'pred'
 
